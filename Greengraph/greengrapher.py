@@ -9,7 +9,7 @@ from png_image import count_green_in_png
 from points import location_sequence
 from visualise import show_green_in_png
 
-def greengrapher(location1="London", location2="Birmingham"):
+def greengrapher(location1, location2):
 
     london_location = geolocate(location1)
 
@@ -29,4 +29,3 @@ def greengrapher(location1="London", location2="Birmingham"):
                   geolocate(location2),10)])
     plt.savefig('greengraph.png')
 
-greengrapher()
