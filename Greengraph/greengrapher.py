@@ -1,7 +1,5 @@
 __author__ = 'Timothy Rose-Innes'
 
-#TODO: Define a module
-#TODO: Pull out locations into inputs,
 #TODO: Tidy up main code (perhaps separate out save into a module)
 #TODO: Create an executable script to pass inputs to greengrapher module
 
@@ -11,9 +9,9 @@ from png_image import count_green_in_png
 from points import location_sequence
 from visualise import show_green_in_png
 
-def greengrapher():
+def greengrapher(location1="London", location2="Birmingham"):
 
-    london_location = geolocate("London")
+    london_location = geolocate(location1)
 
     ### "save"
     import matplotlib
@@ -27,8 +25,8 @@ def greengrapher():
         count_green_in_png(
             map_at(*location,zoom=10,satellite=True))
               for location in location_sequence(
-                  geolocate("London"),
-                  geolocate("Birmingham"),10)])
+                  geolocate(location1),
+                  geolocate(location2),10)])
     plt.savefig('greengraph.png')
 
 greengrapher()
