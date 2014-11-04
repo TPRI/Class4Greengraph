@@ -1,8 +1,8 @@
 __author__ = 'Timothy Rose-Innes'
 
-import png_image
+from png import Reader, from_array
 from itertools import izip
-from StingIO import StringIO
+from StringIO import StringIO
 
 
 def is_green(r, g, b):
@@ -13,7 +13,7 @@ def is_green(r, g, b):
 
 def count_green_in_png(data):
 
-    image = png_image.Reader(file=StringIO(data.content)).asRGB()
+    image = Reader(file=StringIO(data.content)).asRGB()
 
     count = 0
     for row in image[2]:

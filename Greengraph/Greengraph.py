@@ -1,4 +1,4 @@
-__author__ = 'Timothy'
+__author__ = 'Timothy Rose-Innes'
 
 ### "geolocation"
 import geopy
@@ -36,11 +36,11 @@ def is_green(r,g,b):
   threshold=1.1
   return g>r*threshold and g>b*threshold
 
-import png
+import png_image
 from itertools import izip
 
 def count_green_in_png(data):
-    image=png.Reader(file=StringIO(data.content)).asRGB()
+    image=png_image.Reader(file=StringIO(data.content)).asRGB()
     count = 0
     for row in image[2]:
         pixels=izip(*[iter(row)]*3)
@@ -51,9 +51,8 @@ from StringIO import StringIO
 print count_green_in_png(map_at(*london_location))
 
 ### "visualise"
-=
 def show_green_in_png(data):
-    image=png.Reader(file=StringIO(data.content)).asRGB()
+    image=png_image.Reader(file=StringIO(data.content)).asRGB()
     count = 0
     out=[]
     for row in image[2]:
@@ -68,7 +67,7 @@ def show_green_in_png(data):
             outrow.append(0)
         out.append(outrow)
     buffer=StringIO()
-    result = png.from_array(out,mode='RGB')
+    result = png_image.from_array(out,mode='RGB')
     result.save(buffer)
     return buffer.getvalue()
 
